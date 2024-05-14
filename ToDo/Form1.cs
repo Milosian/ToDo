@@ -20,7 +20,7 @@ namespace ToDo
         }
         public static void InitializeDatabase()
         {
-            string dbPath = @"F:\repos\ToDo\ToDo\data\listaZadan.db";
+            string dbPath = @"C:\Users\3B GR1\source\repos\ToDo\ToDo\data\listaZadan.db";
             conn = new SQLiteConnection($"Data Source={dbPath};Version=3;");
             conn.Open();
 
@@ -33,7 +33,8 @@ namespace ToDo
         private void dodajbtn_Click(object sender, EventArgs e)
         {
             string trescZadania = zadanietb.Text;
-            string terminWykonania = terminDate.Value.ToString("MM/dd/yyyy");
+            DateTime terminWykonania;
+            terminWykonania = terminDate.Value.Date;
             string priorytet = priorytetSelect.Text;
 
             using (var cmd = new SQLiteCommand("INSERT INTO zadania(tresc, termin, status) VALUES(@trescZadania, @terminWykonania, @priorytet);", conn))
